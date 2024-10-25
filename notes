@@ -1,3 +1,6 @@
 #if you want to run this app locally
 -systemctl start postgresql
 -edit .env with oly this   DATABASE_URL=postgresql://mypostgres:password@localhost:5432/my_dream
+
+#accessdb  -   psql -h localhost -U mypostgres -d my_dream
+
