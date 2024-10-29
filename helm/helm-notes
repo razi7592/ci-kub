@@ -1,3 +1,9 @@
+#first create a helm for our app
+helm create helm
+cd helm -  #remove all files inside /templates and use our files (currentgit-hub)
+
+#edit only only the chart.yaml and values.yaml on the root directory, no need to remove other files
+
 #to install app helm chart
 helm install my-app .
 
