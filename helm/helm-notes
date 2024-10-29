@@ -1,0 +1,30 @@
+#to install app helm chart
+helm install my-app .
+
+#To get more details about the error, you can render the template with the --debug flag
+helm template my-app . --debug
+
+#verify resources
+kubectl get all
+
+#after deployed there is a chance for got error like this - postgress pod state is pending we can identify error by 
+kubectl describe pod postgres-66f98d4668-2v6v8(podname)
+
+Events:
+  Type     Reason            Age                  From               Message
+  ----     ------            ----                 ----               -------
+  Warning  FailedScheduling  76s (x2 over 6m23s)  default-scheduler  0/1 nodes are available: persistentvolumeclaim "postgres-pvc" not found. preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.
+
+#can solve this error by createing a pvc  (postgres-pvc.yaml) -  postgres-pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi  
+  storageClassName: standard  
+

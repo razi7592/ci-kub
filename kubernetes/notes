@@ -1,0 +1,33 @@
+for deployment 
+--------------
+# Apply the ConfigMap
+kubectl apply -f postgres-configmap.yaml
+
+# Apply the Secret
+kubectl apply -f postgres-secret.yaml
+
+# Apply the Persistent Volume Claim
+kubectl apply -f postgres-pvc.yaml
+
+# Apply the PostgreSQL Deployment and Service
+kubectl apply -f postgres-deployment.yaml
+
+# Apply the Application Deployment
+kubectl apply -f app-deployment.yaml
+
+kubectl apply -f my-app-service.yaml
+
+
+Execute a Command in the PostgreSQL Pod:
+-----------------------------------
+kubectl exec -it <postgres-pod-name> -- psql -U <your_postgres_user> -d <your_postgres_db>
+\dt
+SELECT * FROM contacts;
+
+
+CREATE TABLE contacts (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  phone VARCHAR(15) NOT NULL
+);
+

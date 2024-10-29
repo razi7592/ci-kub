@@ -1,0 +1,17 @@
+postgres:
+  initScript: |
+    CREATE TABLE contacts (
+      id SERIAL PRIMARY KEY,
+      name VARCHAR(100) NOT NULL,
+      phone VARCHAR(15) NOT NULL
+    );
+  user: mypostgres
+  password: 333xxx
+  db: my_dream
+  storage: 1Gi
+  image: postgres:14
+
+app:
+  image: raziriz/kubepro:v1
+  replicaCount: 1
+  containerPort: 3000
